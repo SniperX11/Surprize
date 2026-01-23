@@ -18,22 +18,26 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            padding: 20px;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
         
         .container {
             text-align: center;
-            padding: 40px;
+            padding: 30px 20px;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 30px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             animation: fadeIn 1.5s ease-in;
             max-width: 700px;
+            width: 100%;
             position: relative;
+            margin: 20px auto;
         }
         
         h1 {
-            font-size: 3em;
+            font-size: 2.5em;
             color: #ff6b9d;
             margin-bottom: 20px;
             animation: bounce 2s infinite;
@@ -41,13 +45,13 @@
         }
         
         .hearts {
-            font-size: 4em;
-            margin: 30px 0;
+            font-size: 3em;
+            margin: 20px 0;
             animation: pulse 1.5s ease-in-out infinite;
         }
         
         .message {
-            font-size: 1.3em;
+            font-size: 1.2em;
             color: #555;
             line-height: 1.8;
             margin: 20px 0;
@@ -55,14 +59,14 @@
         
         .timer-section {
             margin: 30px 0;
-            padding: 25px;
+            padding: 20px;
             background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
         
         .timer-title {
-            font-size: 1.5em;
+            font-size: 1.3em;
             color: #2d3436;
             margin-bottom: 15px;
             font-weight: bold;
@@ -71,35 +75,36 @@
         .countdown {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
             flex-wrap: wrap;
         }
         
         .time-box {
             background: white;
-            padding: 15px 20px;
+            padding: 12px 15px;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            min-width: 80px;
+            min-width: 70px;
+            flex: 0 1 auto;
         }
         
         .time-number {
-            font-size: 2.5em;
+            font-size: 2em;
             font-weight: bold;
             color: #e17055;
             display: block;
         }
         
         .time-label {
-            font-size: 0.9em;
+            font-size: 0.8em;
             color: #636e72;
             text-transform: uppercase;
             margin-top: 5px;
         }
         
         .encouragement {
-            margin-top: 20px;
-            font-size: 1.2em;
+            margin-top: 15px;
+            font-size: 1.1em;
             color: #2d3436;
             font-weight: 600;
         }
@@ -109,6 +114,47 @@
             font-size: 2em;
             animation: float 6s ease-in infinite;
             opacity: 0;
+            pointer-events: none;
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .hearts {
+                font-size: 2.5em;
+            }
+            
+            .message {
+                font-size: 1em;
+            }
+            
+            .timer-title {
+                font-size: 1.1em;
+            }
+            
+            .time-box {
+                min-width: 60px;
+                padding: 10px;
+            }
+            
+            .time-number {
+                font-size: 1.5em;
+            }
+            
+            .time-label {
+                font-size: 0.7em;
+            }
+            
+            .encouragement {
+                font-size: 1em;
+            }
+            
+            .container {
+                padding: 20px 15px;
+            }
         }
         
         @keyframes fadeIn {
@@ -197,7 +243,7 @@
     </div>
 
     <script>
-        // Countdown timer pentru BAC - 29 ianuarie 2026, ora 08:00
+        // Countdown timer pentru BAC - 29 iunie 2026, ora 08:00
         const bacDate = new Date('2026-06-29T08:00:00').getTime();
         
         function updateCountdown() {
