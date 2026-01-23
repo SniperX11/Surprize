@@ -28,7 +28,7 @@
             border-radius: 30px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             animation: fadeIn 1.5s ease-in;
-            max-width: 600px;
+            max-width: 700px;
             position: relative;
         }
         
@@ -51,6 +51,57 @@
             color: #555;
             line-height: 1.8;
             margin: 20px 0;
+        }
+        
+        .timer-section {
+            margin: 30px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .timer-title {
+            font-size: 1.5em;
+            color: #2d3436;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .time-box {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            min-width: 80px;
+        }
+        
+        .time-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #e17055;
+            display: block;
+        }
+        
+        .time-label {
+            font-size: 0.9em;
+            color: #636e72;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+        
+        .encouragement {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #2d3436;
+            font-weight: 600;
         }
         
         .floating-hearts {
@@ -113,16 +164,71 @@
 </head>
 <body>
     <div class="container">
-        <h1>Esti o Draguta !</h1>
+        <h1>Ești o Drăguță !</h1>
         <div class="hearts">💕 💖 💕</div>
         <div class="message">
             <span class="sparkle">✨</span>
             O zi minunată!
             <span class="sparkle">✨</span>
         </div>
+        
+        <div class="timer-section">
+            <div class="timer-title">📚 Timpul rămas până la BAC 📚</div>
+            <div class="countdown">
+                <div class="time-box">
+                    <span class="time-number" id="days">0</span>
+                    <span class="time-label">Zile</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-number" id="hours">0</span>
+                    <span class="time-label">Ore</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-number" id="minutes">0</span>
+                    <span class="time-label">Minute</span>
+                </div>
+                <div class="time-box">
+                    <span class="time-number" id="seconds">0</span>
+                    <span class="time-label">Secunde</span>
+                </div>
+            </div>
+            <div class="encouragement">💪 Ai încredere în tine! Vei reuși! 🌟</div>
+        </div>
     </div>
 
     <script>
+        // Countdown timer pentru BAC - 29 ianuarie 2026, ora 08:00
+        const bacDate = new Date('2026-01-29T08:00:00').getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = bacDate - now;
+            
+            if (distance < 0) {
+                document.querySelector('.timer-title').textContent = '🎉 Mult succes la BAC! 🎉';
+                document.getElementById('days').textContent = '0';
+                document.getElementById('hours').textContent = '0';
+                document.getElementById('minutes').textContent = '0';
+                document.getElementById('seconds').textContent = '0';
+                document.querySelector('.encouragement').textContent = '🌟 Ești minunată! Dă tot ce ai mai bun! 🌟';
+                return;
+            }
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+        
+        // Update countdown every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
         // Create floating hearts
         function createHeart() {
             const heart = document.createElement('div');
